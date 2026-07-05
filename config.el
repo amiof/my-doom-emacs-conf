@@ -168,19 +168,6 @@
       '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src")
         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "tsx/src")))
 
-;; Automatically force compilation and placement into the exact local directory Emacs wants
-;; (defun my/install-ts-grammars ()
-;;   "Install typescript and tsx tree-sitter grammars to the local directory."
-;;   (interactive)
-;;   (let ((treesit-extra-load-path '("~/.config/emacs/.local/etc/tree-sitter/")))
-;;     ;; Create directory if it doesn't exist
-;;     (make-directory "~/.config/emacs/.local/etc/tree-sitter/" t)
-;;     ;; Force install both
-;;     (treesit-install-language-grammar 'typescript)
-;;     (treesit-install-language-grammar 'tsx)))
-
-;; ;; Tell Emacs to look in your custom local path for tree-sitter grammars
-;; (add-to-list 'treesit-extra-load-path (expand-file-name "~/.config/emacs/.local/etc/tree-sitter/"))
 
 
 (add-hook 'typescript-ts-mode-hook #'lsp-deferred)
@@ -188,33 +175,6 @@
 (add-hook 'js-ts-mode-hook #'lsp-deferred)
 (add-hook 'css-ts-mode-hook #'lsp-deferred)
 (add-hook 'web-mode-hook #'lsp-deferred)
-
-
-;; (use-package typescript-ts-mode
-;;   :ensure nil
-;;   :mode (("\\.ts\\'" . typescript-ts-mode)
-;;          ("\\.tsx\\'" . tsx-ts-mode))
-;;   :config
-;;   (setq typescript-ts-mode-indent-offset 2))
-
-
-;; (after! typescript-mode
-;;   (add-hook 'typescript-mode-hook #'lsp-deferred))
-
-;; (after! js2-mode
-;;   (add-hook 'js2-mode-hook #'lsp-deferred))
-
-;; (after! web-mode
-;;   (add-hook 'web-mode-hook #'lsp-deferred))
-
-;; (after! css-mode
-;;   (add-hook 'css-mode-hook #'lsp-deferred))
-
-;; (add-hook 'tsx-ts-mode-hook #'lsp-deferred)
-;; (add-hook 'typescript-ts-mode-hook #'lsp-deferred)
-;; (add-hook 'css-ts-mode-hook #'lsp-deferred)
-
-
 
 (after! flycheck
   (global-flycheck-mode))
@@ -237,29 +197,6 @@
 
 (use-package! lsp-tailwindcss :after lsp-mode)
 
-;; (after! eglot
-;;   ;; 1. Automatically turn on inlay hints globally when Eglot connects
-;;   (add-hook 'eglot-managed-mode-hook #'eglot-inlay-hints-mode)
-
-;;   ;; 2. Configure TypeScript/JavaScript language server to enable inlay hints
-;;   (setq-default eglot-workspace-configuration
-;;                 '(:typescript.inlayHints (:parameterNames (:enabled "all")
-;;                                           :parameterTypes (:enabled t)
-;;                                           :variableTypes (:enabled t)
-;;                                           :propertyDeclarationTypes (:enabled t)
-;;                                           :functionLikeReturnTypes (:enabled t))
-;;                   :javascript.inlayHints (:parameterNames (:enabled "all")
-;;                                           :parameterTypes (:enabled t)
-;;                                           :variableTypes (:enabled t)
-;;                                           :propertyDeclarationTypes (:enabled t)
-;;                                           :functionLikeReturnTypes (:enabled t))
-;;                   ;; 3. Configure Rust (rust-analyzer) inlay hints
-;;                   :rust-analyzer (:inlayHints (:bindingModeHints (:enable t)
-;;                                                :chainingHints (:enable t)
-;;                                                :closingBraceHints (:enable t)
-;;                                                :parameterHints (:enable t)
-;;                                                :typeHints (:enable t))))))
-;;
 
 (after! lsp-ui
   (setq
@@ -285,12 +222,4 @@
   (map! :n "F" #'lsp-ui-doc-focus-frame)
 
   ;; switch between windows
-(map! :n "J" #'other-window)
-
-;; (map! :leader
-;;       :desc "Save project (custom)"
-;;       "w w" #'project-save-some-buffers)
-
-;; remvoe ~ end the file
-;; (setq-default indicate-empty-lines nil)
-
+  (map! :n "J" #'other-window)

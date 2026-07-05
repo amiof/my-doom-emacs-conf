@@ -163,14 +163,6 @@
 (setq +dashboard-ascii-banner-fn #'my/random-banner)
 
 
-;; (setq +dashboard-ascii-banner-fn
-;;       (lambda ()
-;;         (with-temp-buffer
-;;           (insert-file-contents "~/.config/doom/lisp/banner.txt")
-;;           (buffer-string))))
-
-
-
 
 (setq treesit-language-source-alist
       '((typescript "https://github.com/tree-sitter/tree-sitter-typescript" "v0.20.3" "typescript/src")
@@ -302,36 +294,3 @@
 ;; remvoe ~ end the file
 ;; (setq-default indicate-empty-lines nil)
 
-
-
-;; (after! treemacs
-;;   (map! :map treemacs-mode-map
-;;         ;; Open / expand
-;;         :n "l" #'treemacs-RET-action
-
-;;         ;; Close / collapse
-;;         :n "h" #'treemacs-root-up
-
-;;         ;; Next/previous line
-;;         :n "j" #'next-line
-;;         :n "k" #'previous-line
-
-;;         ;; Refresh
-;;         :n "R" #'treemacs-refresh
-
-;;         ;; Create
-;;         :n "a" #'treemacs-create-file
-;;         :n "A" #'treemacs-create-dir
-
-;;         ;; Rename/Delete
-;;         :n "r" #'treemacs-rename
-;;         :n "d" #'treemacs-delete
-
-;;         ;; Copy/Move
-;;         :n "c" #'treemacs-copy-file
-;;         :n "m" #'treemacs-move-file))
-
-;; (after! treemacs
-;;   (map! :map treemacs-mode-map
-;;         :n "h" #'treemacs-collapse-parent-node
-;;         :n "l" #'treemacs-RET-action))

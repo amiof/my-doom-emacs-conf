@@ -145,50 +145,6 @@
     (neoscroll-mode 1))
 
 
-
-;; (defun my-load-banners (file)
-;;   "Return list of banners from FILE, separated by lines containing only %%%."
-;;   (let* ((raw (with-temp-buffer
-;;                 (insert-file-contents file)
-;;                 (buffer-string)))
-;;          ;; Remove a possible trailing newline to avoid an empty last banner
-;;          (clean (replace-regexp-in-string "\n\\'" "" raw))
-;;          ;; Split on newline followed by %%% and another newline (or end)
-;;          (banners (split-string clean "\n%%%\n")))
-;;     ;; Remove any empty strings (e.g., from trailing delimiter)
-;;     (seq-remove #'string-empty-p banners)))
-
-;; (setq my-banner-list
-;;       (my-load-banners (expand-file-name "lisp/banner.txt" doom-user-dir)))
-
-;; ;; Pick a random banner at startup
-;; (setq +doom-dashboard-banner-ascii (seq-random-elt my-banner-list))
-
-;; (add-hook '+doom-dashboard-functions
-;;           (lambda ()
-;;             (setq +doom-dashboard-banner-ascii
-;;                   (seq-random-elt my-banner-list))))
-
-;; (setq test-banners (my-load-banners (expand-file-name "lisp/banner.txt" doom-user-dir)))
-;;
-;;
-;;
-;;
-;;
-;; (setq +doom-dashboard-pwd-policy nil)
-;; (remove-hook '+doom-dashboard-functions #'doom-dashboard-widget-banner)
-;; (after! doom-dashboard
-;;   (setq +doom-dashboard-banner-fn
-;;         (lambda ()
-;;           (with-temp-buffer
-;;             (insert-file-contents "~/.config/doom/lisp/banner.txt")
-;;             (buffer-string)))))
-
-;; (with-temp-buffer
-;;   (insert-file-contents "~/.config/doom/lisp/banner.txt")
-;;   (message "%s" (buffer-string)))
-
-
 (defun my-load-banners (file)
   (let* ((raw (with-temp-buffer
                 (insert-file-contents file)

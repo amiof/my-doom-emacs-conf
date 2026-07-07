@@ -268,3 +268,17 @@
 (map! :leader
       :prefix ("c" . "code")
       :desc "Copy Flycheck error" "y" #'flycheck-copy-errors-as-kill)
+
+
+;; for run dap for debug
+(after! dap-mode
+  (setq dap-auto-configure-mode t))
+
+;;for go lang debuge
+(after! dap-mode
+  (require 'dap-dlv-go))
+
+;; Bind your jump commands directly to last location
+(map! :leader
+      :desc "Jump to previous location" "[" #'evil-jump-backward
+      :desc "Jump to next location"     "]" #'evil-jump-forward)

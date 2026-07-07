@@ -223,3 +223,48 @@
 
   ;; switch between windows
   (map! :n "J" #'other-window)
+
+
+(use-package! ghostel
+  :commands (ghostel ghostel-project)
+  :config
+  ;; Ghostel automatically downloads its prebuilt native module on first run.
+  ;; You don't need any special Zig toolchains installed!
+  )
+
+(use-package! evil-ghostel
+  :after (ghostel evil)
+  :hook (ghostel-mode . evil-ghostel-mode))
+;;
+;; (use-package! evil-ghostel
+;;   :after ghostel
+;;   :config
+;;   (add-hook! 'ghostel-mode-hook #'evil-ghostel-mode))
+
+;; 1. Configure the popup rules for Ghostel
+(set-popup-rule! "^\\*ghostel" :side 'bottom :size 0.35 :quit nil :ttl nil)
+
+
+;; 2. Map the shortcut to SPC o g
+(map! :leader
+      (:prefix-map ("o" . "open")
+       :desc "Ghostel terminal" "g" #'ghostel))
+
+;; Define a function to open Ghostel full screen/window
+(defun my/ghostel-full-window ()
+  "Open Ghostel terminal in the current window slot, ignoring popup rules."
+  (interactive)
+  (let ((display-buffer-alist nil)) ; Temporarily bypass popup constraints
+    (ghostel)))
+
+;; Bind it to SPC o G
+(map! :leader
+      (:prefix-map ("o" . "open")
+       :desc "Ghostel terminal (Full)" "G" #'my/ghostel-full-window))
+
+
+
+
+(map! :leader
+      :prefix ("c" . "code")
+      :desc "Copy Flycheck error" "y" #'flycheck-copy-errors-as-kill)

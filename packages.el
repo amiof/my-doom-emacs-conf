@@ -56,3 +56,6 @@
 
 (package! lsp-tailwindcss)
 ;; (package! lsp-tailwindcss :recipe (:host github :repo "merrickluo/lsp-tailwindcss"))
+
+(package! ghostel)
+(package! evil-ghostel)

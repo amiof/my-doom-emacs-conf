@@ -24,7 +24,7 @@
 
 ;; (set-frame-font "JetBrains Mono-12" nil t)
 (setq doom-font (font-spec :family "JetBrains Mono" :size 15 :weight 'semi-light)
-     doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 14))
+      doom-variable-pitch-font (font-spec :family "JetBrains Mono" :size 14))
 
 ;; (setq doom-font (font-spec :family "Fira Code" :size 12 :weight 'semi-light)
 ;;      doom-variable-pitch-font (font-spec :family "Fira Sans" :size 13))
@@ -77,7 +77,7 @@
 ;; This will open documentation for it, including demos of how they are used.
 ;; Alternatively, use `C-h o' to look up a symbol (functions, variables, faces,
 ;; etc).
-;
+                                        ;
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
@@ -215,14 +215,14 @@
    lsp-ui-peek-enable t
    lsp-ui-imenu-enable t))
 
-;this disable show doc in defaulte
-  (map! :n "K" #'lsp-ui-doc-show)
+                                        ;this disable show doc in defaulte
+(map! :n "K" #'lsp-ui-doc-show)
 
- ;;focouse in lsp-ui doc
-  (map! :n "F" #'lsp-ui-doc-focus-frame)
+;;focouse in lsp-ui doc
+(map! :n "F" #'lsp-ui-doc-focus-frame)
 
-  ;; switch between windows
-  (map! :n "J" #'other-window)
+;; switch between windows
+(map! :n "J" #'other-window)
 
 
 (use-package! ghostel
@@ -282,3 +282,42 @@
 (map! :leader
       :desc "Jump to previous location" "[" #'evil-jump-backward
       :desc "Jump to next location"     "]" #'evil-jump-forward)
+
+
+(add-hook 'css-mode-hook #'rainbow-mode)
+(add-hook 'scss-mode-hook #'rainbow-mode)
+(add-hook 'web-mode-hook #'rainbow-mode)
+(add-hook 'js-mode-hook #'rainbow-mode)
+(add-hook 'typescript-mode-hook #'rainbow-mode)
+(add-hook 'tsx-ts-mode-hook #'rainbow-mode)
+(add-hook 'json-mode-hook #'rainbow-mode)
+
+(after! lsp-mode
+  (add-hook 'lsp-mode-hook #'+format-with-lsp-mode))
+
+(use-package! emmet-mode
+  :hook ((tsx-ts-mode
+          typescript-ts-mode
+          web-mode
+          css-ts-mode
+          html-mode) . emmet-mode))
+
+
+;; ~/.doom.d/config.el
+(use-package! snippy
+  :config
+  ;; Enable globally (replaces the after-init hook)
+  (global-snippy-minor-mode +1)
+
+  ;; Custom settings
+  (setq snippy-global-languages '("global"))
+  ;; (setq snippy-install-dir (expand-file-name "<your location>"))
+  ;; (setq snippy-source '("Your git repo" . "my-snippets-dir"))
+
+  ;; Update snippet collections
+  (snippy-install-or-update-snippets)
+
+  ;; Add the CAPF completion source
+  (add-hook 'completion-at-point-functions #'snippy-capf))
+
+(add-to-list 'snippy-emacs-to-vscode-lang-alist '(rustic-mode "rust" "rustdoc"))

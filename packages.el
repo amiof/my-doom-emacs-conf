@@ -59,3 +59,10 @@
 
 (package! ghostel)
 (package! evil-ghostel)
+
+(package! rainbow-mode)
+(package! emmet-mode)
+
+
+(package! snippy
+  :recipe (:host github :repo "MiniApollo/snippy" :branch "main"))

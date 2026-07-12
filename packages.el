@@ -66,3 +66,5 @@
 
 (package! snippy
   :recipe (:host github :repo "MiniApollo/snippy" :branch "main"))
+
+(package! avy)

@@ -321,3 +321,14 @@
   (add-hook 'completion-at-point-functions #'snippy-capf))
 
 (add-to-list 'snippy-emacs-to-vscode-lang-alist '(rustic-mode "rust" "rustdoc"))
+
+(after! avy  (setq avy-all-windows t))
+(after! evil  (define-key evil-normal-state-map (kbd "f") #'avy-goto-char))(after! evil  (define-key evil-normal-state-map (kbd "t") #'avy-goto-line))
+
+
+(after! yasnippet
+  (yas-global-mode -1))
+
+(add-hook 'prog-mode-hook
+          (lambda ()
+            (yas-minor-mode -1)))
